@@ -63,6 +63,7 @@ Los siguientes modelos de datos serán mapeados a tablas en la base de datos:
 
 * ### `Cliente`
     * `id` (Integer, Primary Key)
+    * `documento` (String, Unique)
     * `nombre` (String, Non-nullable)
     * `apellido` (String, Non-nullable)
     * `telefono` (String, Nullable)
