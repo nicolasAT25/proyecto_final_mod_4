@@ -12,7 +12,7 @@ class Medicamento(Base):
 
     #Relaciones
     inventarios = relationship("Inventario", back_populates="medicamento", cascade="all, delete-orphan")
-    tickets_despacho = relationship("TicketDespacho", back_populates="medicamento", cascade="all, delete-orphan")
+    tickets_despacho = relationship("TicketDespachoBodega", back_populates="medicamento", cascade="all, delete-orphan")
 
     def __repr__(self):
         return f"<Medicamento(id={self.id}, nombre={self.nombre}, codigo_barras={self.codigo_barras})>"

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from src.database.crud import (
+from database.crud import (
     get_all,
     get_by_id,
     get_by_attribute,
@@ -7,10 +7,10 @@ from src.database.crud import (
     update_item,
     delete_item,
 )
-from src.models import Medicamento, Ubicacion, Cliente, TicketDespachoBodega
-from src.models.ubicacion import TipoUbicacion
-from src.models.ticket_despacho_bodega import EstadoTicket
-from src.services.inventory_service import update_stock, get_stock_by_medicamento_and_ubicacion, get_medicamento_by_id,get_ubicacion_by_id
+from models import Medicamento, Ubicacion, Cliente, TicketDespachoBodega
+from models.ubicacion import TipoUbicacion
+from models.ticket_despacho_bodega import EstadoTicketDespacho
+from services.inventory_service import update_stock, get_stock_by_medicamento_and_ubicacion, get_medicamento_by_id,get_ubicacion_by_id
 
 #-- Gestion de Clientes --
 def add_cliente(db: Session, documento: str, nombre: str, apellido: str, telefono : str, email: str, direccion: str = None, ciudad: str = None, pais: str = None, codigo_postal: str = None):
@@ -95,3 +95,47 @@ def displatch_medicamento_from_local(db: Session, medicamento_id: int, local_id:
             return False, "Error al actualizar el inventario"
     else:
         return False, "Stock insuficiente en el local"
+    
+#-- Gestion de Ticket Despacho Bodega --
+
+def create_ticket(db: Session, medicamento_id: int, cantidad: int, cliente_id: int):
+    """
+    Crea un nuevo ticket de despacho a la bodega.
+    """
+    ticket_data = {
+        "medicamento_id": medicamento_id,
+        "cantidad": cantidad,
+        "cliente_id": cliente_id,
+        "estado": EstadoTicketDespacho.PENDIENTE
+    }
+    return create_item(db, TicketDespachoBodega, ticket_data)
+
+def get_ticket_by_id(db: Session, ticket_id: int):
+    """
+    Obtiene un ticket de despacho por su ID.
+    """
+    return get_by_id(db, TicketDespachoBodega, ticket_id)
+
+def get_all_tickets(db: Session):
+    """
+    Obtiene todos los tickets de despacho de la base de datos.
+    """
+    return get_all(db, TicketDespachoBodega)
+
+def update_ticket(db: Session, ticket_id: int, new_data: dict):
+    """
+    Actualiza un ticket existente en la base de datos.
+    """
+    ticket = get_ticket_by_id(db, ticket_id)
+    if ticket:
+        return update_item(db, TicketDespachoBodega, ticket_id, new_data)
+    return None
+
+def delete_ticket(db: Session, ticket_id: int):       
+    """
+    Elimina un ticket de despacho de la base de datos.
+    """
+    ticket = get_ticket_by_id(db, ticket_id)
+    if ticket:
+        return delete_item(db, ticket)
+    return False

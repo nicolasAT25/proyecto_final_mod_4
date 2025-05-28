@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from src.database.crud import (
+from database.crud import (
     get_all,
     get_by_id,
     get_by_attribute,
@@ -7,8 +7,8 @@ from src.database.crud import (
     update_item,
     delete_item,
 )
-from src.models import Inventario, Medicamento, Ubicacion
-from src.models.ubicacion import TipoUbicacion
+from models import Inventario, Medicamento, Ubicacion
+from models.ubicacion import TipoUbicacion
 
 # --- Gestion de Medicamentos ---
 
@@ -47,7 +47,7 @@ def update_medicamento(db: Session, medicamento_id: int, new_data: dict):
     """
     medicamento = get_medicamento_by_id(db, medicamento_id)
     if medicamento:
-        return update_item(db, Medicamento, medicamento_id, new_data)
+        return update_item(db, medicamento, new_data)
     return None
 
 def delete_medicamento(db: Session, medicamento_id: int):
