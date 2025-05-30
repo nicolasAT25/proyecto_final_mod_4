@@ -6,7 +6,7 @@ class Medicamento(Base):
     __tablename__ = "medicamentos"
 
     id = Column(Integer, primary_key=True)
-    nombre = Column(String(100),nullable=False)
+    nombre = Column(String(100),nullable=False, unique=True)
     descripcion = Column(String(255),nullable=False)
     codigo_barras = Column(String(100), unique=True , nullable=False)
 

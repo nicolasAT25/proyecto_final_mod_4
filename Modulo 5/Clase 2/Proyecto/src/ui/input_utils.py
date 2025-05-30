@@ -27,6 +27,9 @@ def get_init_input(prompt: str, min_value: int = 0, max_value: int = sys.maxsize
         except ValueError:
             print("Por favor, ingresa un valor valido.")
 
+def verificador_exitencia():
+    pass
+
 def clear_screen():
     if sys.platform == "win32":
         os.system("cls")

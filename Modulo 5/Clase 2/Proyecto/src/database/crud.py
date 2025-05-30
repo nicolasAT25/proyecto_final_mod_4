@@ -66,7 +66,7 @@ def update_item(db: Session, db_item, update_data: dict):
     :param db_item: Registro a actualizar.
     :param update_data: Datos a actualizar.
     :return: Registro actualizado o None si ocurre un error.
-    """
+    """ 
     try:
         for key, value in update_data.items():
             setattr(db_item, key, value)

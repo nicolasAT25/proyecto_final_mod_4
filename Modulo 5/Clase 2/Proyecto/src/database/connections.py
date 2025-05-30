@@ -9,7 +9,9 @@ from models.base import Base
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, 'data', 'sigid_med.db')}"
+
 
 os.makedirs(os.path.join(BASE_DIR, 'data'), exist_ok=True)
 

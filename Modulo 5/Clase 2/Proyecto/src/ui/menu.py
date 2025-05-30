@@ -3,10 +3,9 @@ from sqlalchemy.orm import Session
 from database.connections import get_db
 from services import inventory_service, dispatch_service, report_service
 from ui.input_utils import get_init_input, get_string_input,get_init_input, clear_screen
-from ui.display_utils import print_success, print_info, print_error, print_warning, print_table
+from ui.display_utils import print_success, print_info, print_error, print_warning, print_table, print_table_medicamentos
 from models.ticket_despacho_bodega import EstadoTicketDespacho
 from models.ubicacion import TipoUbicacion
-
 
 def _display_invenroty_management_menu():
     clear_screen()
@@ -25,12 +24,89 @@ def handle_inventory_menu():
         elif choise == "2":
             _handle_ubicacion_menu()
         elif choise == "3":
-            pass
+            _handle_stock_menu()
         elif choise == "4":
             break
         else:
             print_warning("Opcion no valida")
         input("Presiona enter para continuar...")
+
+def _handle_stock_menu():
+    while True:
+        clear_screen()
+        print("Gestion de Stock")
+        print("1. ver todo el stock")
+        print("2. agregar stock / actualizar stock")
+        print("3. eliminar stock")
+        print("4. Volver al Menu Principal")
+
+
+        choise = get_string_input("Seleccione una opcion: ", required=True)
+
+        with get_db() as db:
+            if choise == "1":
+                ver_inventario()
+                input("Presiona enter para continuar...")
+
+            elif choise == "2":
+                clear_screen()
+                ver_ubicaciones()
+                ver_medicamentos()
+                ver_inventario()
+                
+                medicamento_id = get_init_input("Ingrese el id del medicamento: ", min_value=1, required=True) 
+                ubicacion_id = get_init_input("Ingrese el id de la ubicacion: ", min_value=1, required=True) 
+                cantidad = get_init_input("Ingrese la cantidad de medicamentos: ", min_value=1, required=True)
+
+                isvu = inventory_service.verificador_de_ubicacion_dentro_de_inventario(db, ubicacion_id)
+                isvm = inventory_service.verificardor_de_medidicamento_dentro_de_inventario(db, medicamento_id)
+
+                if isvu and isvm:
+                    print_info("Este medicamento ya se encuentra en esta ubicacion")
+                    print_info("Deseas actualizar el stock?")
+                    print("1. Si")
+                    print("2. No")
+                    respuesta = get_init_input("Seleccione una opcion: ", min_value=1, max_value=2, required=True)
+                    
+                    if respuesta == 1:
+                        if inventory_service.update_stock(db, isvm.id, ubicacion_id, medicamento_id, cantidad):
+                            print_success("Stock actualizado correctamente")
+                        else:
+                            print_error("No se pudo actualizar el stock")
+                    else:
+                        print_info("Stock no actualizado")
+
+                else:
+                    if inventory_service.add_inventario(db, medicamento_id, ubicacion_id, cantidad):
+                        print_success("Stock agregado correctamente")
+                    else:
+                        print_error("No se pudo agregar el stock")
+
+                input("Presiona enter para continuar...")
+                
+            elif choise == "3":
+                ver_inventario()
+                inventario_id = get_init_input("Ingrese el id de la ubicacion: ", min_value=1, required=True)
+
+                if inventory_service.delete_inventario(db, inventario_id):
+                    print_success("Ubicacion eliminada correctamente")
+                else:
+                    print_error("No se pudo eliminar la ubicacion")
+
+                input("Presiona enter para continuar...")
+
+            elif choise == "4":
+                break
+                
+
+def ver_inventario():
+    with get_db() as db:
+        if stock := inventory_service.get_inventario_all(db):
+            headers = ["id", "ubicacion", "medicamento", "cantidad"]
+            print_info("Stock")
+            print_table_medicamentos(stock, headers, title="Stock")
+        else:
+            print_warning("No hay stock disponible")
 
 def _handle_ubicacion_menu():
     while True:
@@ -63,14 +139,7 @@ def _handle_ubicacion_menu():
                 input("Presiona enter para continuar...")
 
             elif choise == "2":
-                ubicaciones = inventory_service.get_all_ubicaciones(db)
-                if ubicaciones:
-                    headers = ["id", "nombre", "tipo"]
-                    titulo = "Ubicaciones"
-                    print_table(ubicaciones, headers, titulo)
-                else:
-                    print_warning("No se encontraron ubicaciones")
-                input("Presiona enter para continuar...")
+                ver_ubicaciones()
             elif choise == "3":
                 
                 id_ubicacion = get_init_input("Ingrese el id de la ubicacion: ", min_value=1, required=True)
@@ -93,6 +162,16 @@ def _handle_ubicacion_menu():
                         print_error("Error al actualizar la ubicacion")
             elif choise == "4":
                 break
+
+def ver_ubicaciones():
+    with get_db() as db:
+        ubicaciones = inventory_service.get_all_ubicaciones(db)
+        if ubicaciones:
+            headers = ["id", "nombre", "tipo"]
+            titulo = "Ubicaciones"
+            print_table(ubicaciones, headers, titulo)
+        else:
+            print_warning("No se encontraron ubicaciones")
 
 def _handle_medicamento_menu():
     while True:
@@ -121,12 +200,7 @@ def _handle_medicamento_menu():
                 input("Presiona enter para continuar...")
 
             elif choise == "2":
-                if medicamentos := inventory_service.get_all_medicamentos(db):
-                    headers = ["id", "nombre", "descripcion", "codigo_barras"]
-                    titulo = "Medicamentos"
-                    print_table(medicamentos, headers,titulo)
-                else:
-                    print_error("No se encontraron medicamentos")
+                ver_medicamentos()
                 input("Presiona enter para continuar...")
             elif choise == "3":
                 selected_id = get_init_input("Ingrese el id del medicamento a actualizar: ", required=True)
@@ -167,14 +241,22 @@ def _handle_medicamento_menu():
             elif choise == "5":
                 break
 
+def ver_medicamentos():
+    with get_db() as db:
+        medicamentos = inventory_service.get_all_medicamentos(db)
+        if medicamentos:
+            headers = ["id", "nombre", "descripcion", "codigo_barras"]
+            titulo = "Medicamentos"
+            print_table(medicamentos, headers, titulo)
+        else:
+            print_warning("No se encontraron medicamentos")
 
 def display_main_menu():
     clear_screen()
     print("Menu Principal")
-    print("1. Gestion de Inventarios")
-    print("2. Gestion de Medicamentos")
-    print("3. Gestion de Tickets Despacho Bodega")
-    print("5. Informes")
+    print("1. Gestion de Inventarios / Medicamentos")
+    print("2. Gestion de Tickets Despacho Bodega / despachos")
+    print("3. Informes")
     print("0. Salir")
     return get_string_input("Seleccione una opcion: ", required=True)
 
@@ -186,10 +268,6 @@ def handle_main_menu():
         elif choise == "2":
             pass
         elif choise == "3":
-            pass
-        elif choise == "4":
-            pass
-        elif choise == "5":
             pass
         elif choise == "0":
             break

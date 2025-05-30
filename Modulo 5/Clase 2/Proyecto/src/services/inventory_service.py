@@ -108,6 +108,7 @@ def delete_ubicacion(db: Session, ubicacion_id: int):
 
 # --- Gestion de Inventarios ---
 
+
 def add_inventario(db: Session, medicamento_id: int, ubicacion_id: int, cantidad: int):
     """
     Agrega un nuevo inventario a la base de datos.
@@ -153,10 +154,12 @@ def update_stock(db: Session, inventario_id: int, ubicacion_id: int, medicamento
     inventario_item = get_stock_by_medicamento_and_ubicacion(db, medicamento_id, ubicacion_id)
     if inventario_item:
         new_quantity = inventario_item.cantidad + cantidad_a_sumar
+        print(inventario_item)
+        print(new_quantity)
         if new_quantity < 0:
             print("Error: la cantidad no puede ser negativa.")
             return None
-        return update_item(db, Inventario, inventario_id, {"cantidad": new_quantity})
+        return update_item(db, inventario_item, {"cantidad": new_quantity})
     else:
         if cantidad_a_sumar < 0:
             print("Error: no se puede agregar stock a un medicamento no existente.")
@@ -176,3 +179,15 @@ def delete_inventario(db: Session, inventario_id: int):
     if inventario:
         return delete_item(db, inventario)
     return False
+
+def verificardor_de_medidicamento_dentro_de_inventario(db: Session, medicamento_id: int):
+    #verificamos el el id de medicamento ya existe en la tabla inventario
+    verificador = db.query(Inventario).filter(Inventario.medicamento_id == medicamento_id).first()
+    #retornamos un bool
+    return verificador
+
+def verificador_de_ubicacion_dentro_de_inventario(db: Session, ubicacion_id: int):
+    #verificamos el el id de ubicacion ya existe en la tabla inventario
+    verificador = db.query(Inventario).filter(Inventario.ubicacion_id == ubicacion_id).first()
+    #retornamos un bool
+    return verificador
