@@ -15,47 +15,76 @@
   <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css" rel="stylesheet" />
   <style>
     body { background: #f8f9fa; color: #212529; }
-    .accent { color: #0d6efd; }
+    .accent { color: #6C47FF; }
     .accordion-button:not(.collapsed) { color: #0d6efd; background: #e9ecef; }
     .accordion-button .fa-fw { margin-right: 0.5em; }
     .accordion-item { border-radius: 1rem; margin-bottom: 1.5rem; overflow: hidden; }
     .accordion-button { font-weight: 600; font-size: 1.15rem; }
-    .accordion-body h5 { color: #0d6efd; font-weight: 600; }
-    .footer { background: #e9ecef; color: #0d6efd; padding: 1rem 0; text-align: center; margin-top: 3rem; }
+    .accordion-body h5 { color: #6C47FF; font-weight: 600; }
+    .footer { background: #e9ecef; color: #6C47FF; padding: 1rem 0; text-align: center; margin-top: 3rem; }
     @media (max-width: 767.98px) {
       .accordion-button { font-size: 1rem; }
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    .hero-header {
+      background: #6C47FF;
+      color: #fff;
+      border-radius: 0 0 2rem 2rem;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 24px 0 rgba(108,71,255,0.10);
+    }
+    .hero-header h1 {
+      color: #fff !important;
+      text-shadow: 0 2px 8px rgba(44,34,80,0.10);
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom mb-4 shadow-sm rounded-bottom-4" style="min-height:70px;">
-    <div class="container">
-      <a class="navbar-brand accent fw-bold fs-3" href="#" style="font-family: 'Poppins', sans-serif; letter-spacing: -1px;">
-        <i class="fa-solid fa-code"></i> Taller Python-PostgreSQL
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link accent fw-semibold" href="#modulo1">Módulo 1</a></li>
-          <li class="nav-item"><a class="nav-link accent fw-semibold" href="#modulo2">Módulo 2</a></li>
-          <li class="nav-item"><a class="nav-link accent fw-semibold" href="#modulo3">Módulo 3</a></li>
-          <li class="nav-item"><a class="nav-link accent fw-semibold" href="#modulo4">Módulo 4</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!-- Header -->
-  <header class="py-5 mb-4" style="background: #fff; border-radius: 0 0 2rem 2rem;">
-    <div class="container text-center">
-      <h1 class="display-5 fw-bold accent mb-2" style="font-family: 'Poppins', sans-serif;">
+  <header class="hero-header mb-4">
+    <div class="container text-center py-5">
+      <h1 class="display-4 fw-bold mb-3" style="font-family: 'Poppins', sans-serif; color: #fff; letter-spacing: -1px;">
         Taller Práctico: Depuración y Optimización de Conexiones Python-PostgreSQL con Asistencia de IA
       </h1>
     </div>
   </header>
+
+  <!-- Navbar Mejorado -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm sticky-top mb-5" style="z-index: 1030;">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarModulos" aria-controls="navbarModulos" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarModulos">
+        <ul class="navbar-nav gap-2">
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo1"><i class="fas fa-key fa-fw"></i> Módulo 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo2"><i class="fas fa-bug-slash fa-fw"></i> Módulo 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo3"><i class="fas fa-arrows-spin fa-fw"></i> Módulo 3</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo4"><i class="fas fa-robot fa-fw"></i> Módulo 4</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo5"><i class="fas fa-broom fa-fw"></i> Módulo 5</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link accent fw-semibold" href="#modulo6"><i class="fas fa-graduation-cap fa-fw"></i> Módulo 6</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
   <!-- Objetivos y Prerrequisitos -->
   <section class="container mb-5">
@@ -84,13 +113,15 @@
     </div>
   </section>
 
+  
+
   <!-- Módulos del Taller (Acordeón) -->
   <main class="container mb-5">
-    <h2 class="accent mb-4 text-center fw-bold" style="font-family: 'Poppins', sans-serif;"><i class="fas fa-layer-group fa-fw"></i> Módulos del Taller</h2>
+    <h2 class="accent mb-4 text-center fw-bold" style="font-family: 'Poppins', sans-serif; color: #6C47FF;"><i class="fas fa-layer-group fa-fw"></i> Módulos del Taller</h2>
     <div class="accordion" id="accordionTaller">
 
       <!-- Módulo 1 -->
-      <div class="accordion-item">
+      <div class="accordion-item" id="modulo1">
         <h2 class="accordion-header" id="heading1">
           <button class="accordion-button accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
             <i class="fas fa-key fa-fw"></i> Módulo 1: Configuración Segura con Variables de Entorno
@@ -141,7 +172,7 @@ DB_PORT=5432</code></pre>
       </div>
 
       <!-- Módulo 2 -->
-      <div class="accordion-item">
+      <div class="accordion-item" id="modulo2">
         <h2 class="accordion-header" id="heading2">
           <button class="accordion-button collapsed accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
             <i class="fas fa-bug-slash fa-fw"></i> Módulo 2: La Conexión y los Errores Clásicos
@@ -276,7 +307,7 @@ finally:
       </div>
 
       <!-- Módulo 3 -->
-      <div class="accordion-item">
+      <div class="accordion-item" id="modulo3">
         <h2 class="accordion-header" id="heading3">
           <button class="accordion-button collapsed accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
             <i class="fas fa-arrows-spin fa-fw"></i> Módulo 3: Implementando un CRUD Robusto
@@ -365,7 +396,7 @@ def eliminar_usuario(conn, id):
       </div>
 
       <!-- Módulo 4 -->
-      <div class="accordion-item">
+      <div class="accordion-item" id="modulo4">
         <h2 class="accordion-header" id="heading4">
           <button class="accordion-button collapsed accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
             <i class="fas fa-robot fa-fw"></i> Módulo 4: Tu Asistente de IA Personal
@@ -429,7 +460,7 @@ def eliminar_usuario(conn, id):
       </div>
 
       <!-- Módulo 5 -->
-      <div class="accordion-item">
+      <div class="accordion-item" id="modulo5">
         <h2 class="accordion-header" id="heading5">
           <button class="accordion-button collapsed accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
             <i class="fas fa-broom fa-fw"></i> Módulo 5: Refactorización y Código Limpio
@@ -530,6 +561,92 @@ ecrear_usuario("Juan", "juan@email.com")
               <li>Se proporciona un script mal estructurado.</li>
               <li>Tarea: refactorizarlo para usar sentencias <code>with</code> y una clase <code>DatabaseManager</code>.</li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 6 -->
+      <div class="accordion-item" id="modulo6">
+        <h2 class="accordion-header" id="heading6">
+          <button class="accordion-button collapsed accent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+            <i class="fas fa-graduation-cap fa-fw"></i> Módulo 6: Proyecto Integrador – Sistema de Gestión Académica (Terminal)
+          </button>
+        </h2>
+        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionTaller">
+          <div class="accordion-body">
+            <h5>Teoría</h5>
+            <p>
+              En este módulo, aplicarás todos los conceptos vistos en el taller para construir un sistema real de gestión académica desde la terminal. El objetivo es que practiques la configuración segura, manejo de errores, operaciones CRUD, buenas prácticas de código y refactorización en un proyecto completo.
+            </p>
+            <b>Descripción del proyecto:</b>
+            <ul>
+              <li>Registrar alumnos y sus datos personales.</li>
+              <li>Registrar programas/carreras.</li>
+              <li>Registrar y consultar notas de los alumnos en diferentes programas.</li>
+              <li>Consultar reportes de alumnos, programas y notas.</li>
+              <li>Todo el flujo será a través de la terminal (no interfaz gráfica).</li>
+            </ul>
+            <b>Parámetros y Requisitos del Proyecto</b>
+            <ul>
+              <li><b>Estructura de la base de datos (sugerida):</b>
+                <ul>
+                  <li>Tabla <code>alumnos</code> (id, nombre, email, programa_id)</li>
+                  <li>Tabla <code>programas</code> (id, nombre_programa)</li>
+                  <li>Tabla <code>notas</code> (id, alumno_id, materia, nota)</li>
+                </ul>
+              </li>
+              <li><b>Funcionalidades mínimas:</b>
+                <ul>
+                  <li>Agregar, listar, actualizar y eliminar alumnos.</li>
+                  <li>Agregar, listar, actualizar y eliminar programas.</li>
+                  <li>Registrar y consultar notas de los alumnos.</li>
+                  <li>Consultar reportes de alumnos por programa y promedio de notas.</li>
+                  <li>Validar datos y manejar errores (por ejemplo, no permitir emails duplicados, notas fuera de rango, etc).</li>
+                </ul>
+              </li>
+              <li><b>Buenas prácticas requeridas:</b>
+                <ul>
+                  <li>Uso de variables de entorno para la conexión.</li>
+                  <li>Uso de <code>with</code> para conexiones y cursores.</li>
+                  <li>Manejo de errores con <code>try/except</code>.</li>
+                  <li>Consultas SQL seguras (parámetros).</li>
+                  <li>Separar la lógica de acceso a datos de la lógica de negocio.</li>
+                  <li>Código modular y refactorizado.</li>
+                </ul>
+              </li>
+              <li><b>Interfaz por terminal:</b>
+                <ul>
+                  <li>El usuario debe poder elegir opciones mediante un menú textual.</li>
+                  <li>Ejemplo de menú:</li>
+                </ul>
+                <pre class="bg-light rounded-3 p-3 mb-2"><code class="language-python">def mostrar_menu():
+    print("""\nSistema de Gestión Académica
+1. Registrar alumno
+2. Listar alumnos
+3. Registrar programa
+4. Listar programas
+5. Registrar nota
+6. Consultar notas de un alumno
+7. Reporte de promedios por programa
+0. Salir
+""")
+</code></pre>
+              </li>
+              <li><b>Sugerencia de organización de archivos:</b>
+                <ul>
+                  <li><code>main.py</code> (menú y flujo principal)</li>
+                  <li><code>db.py</code> (conexión y funciones de acceso a la base de datos)</li>
+                  <li><code>.env</code> (variables de entorno)</li>
+                  <li><code>README.md</code> (instrucciones de uso)</li>
+                </ul>
+              </li>
+            </ul>
+            <h5 class="mt-4">Actividad Final</h5>
+            <p>
+              Desarrolla el sistema completo siguiendo los parámetros anteriores.<br>
+              <b>Tip:</b> Comienza por diseñar la base de datos y las funciones CRUD para cada entidad.<br>
+              <b>Recomendación:</b> Refactoriza tu código a medida que avanzas y documenta cada función.
+            </p>
           </div>
         </div>
       </div>
