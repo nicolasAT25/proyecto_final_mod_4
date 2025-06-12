@@ -1,0 +1,66 @@
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+.accent {
+  color: #6C47FF;
+}
+.card-header {
+  background-color: #f3f0ff;
+  font-weight: 500;
+  font-size: 1.15rem;
+}
+.navbar, .footer {
+  background: #f3f0ff;
+}
+.btn-primary, .accordion-button.accent {
+  background-color: #6C47FF;
+  border-color: #6C47FF;
+  color: #fff;
+}
+.btn-primary:hover, .accordion-button.accent:focus {
+  background-color: #5936b4;
+  border-color: #5936b4;
+}
+.accordion-button.accent {
+  background-color: #f3f0ff;
+  border-color: #6C47FF;
+  color: #6C47FF;
+  font-weight: 600;
+}
+.accordion-button.accent:focus, .accordion-button.accent:not(.collapsed) {
+  background-color: #ede7fe;
+  color: #6C47FF;
+}
+.fa-fw {
+  width: 1.25em;
+}
+.footer {
+  color: #6C47FF;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: 3rem;
+}
+@media (max-width: 767.98px) {
+  .card-group {
+    flex-direction: column;
+  }
+}
+pre, pre code, code, .accordion-body pre, .accordion-body code {
+  color: #232136 !important;
+  background: #fff !important;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Liberation Mono', monospace;
+}
+pre {
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+  box-shadow: 0 2px 12px 0 rgba(44,34,80,0.07);
+}
+code {
+  font-size: 1em;
+  padding: 0;
+} 

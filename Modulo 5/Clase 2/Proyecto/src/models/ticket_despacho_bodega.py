@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from .base import Base
@@ -13,6 +13,7 @@ class EstadoTicketDespacho(enum.Enum):
 
 class TicketDespachoBodega(Base):
     __tablename__ = "ticket_despacho_bodega"
+    
     id = Column(Integer, primary_key=True)
     medicamento_id = Column(Integer, ForeignKey("medicamentos.id"), nullable=False)
     cantidad = Column(Integer, nullable=False)
