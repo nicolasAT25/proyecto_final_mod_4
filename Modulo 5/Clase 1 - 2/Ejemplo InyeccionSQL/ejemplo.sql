@@ -1,1 +1,0 @@
-SELECT * FROM usuarios WHERE nombre = 'admin' AND password = '123';
