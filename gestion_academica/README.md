@@ -7,7 +7,7 @@
 * Se migra la DB de `MySQL` a `PostgreSQL`.
 * Uso de archivo `.env` para las credenciales a la DB.
 * Se añade archivo `.gitignore` para gestionar _push_ de los archivos al repositorio.
-* Los archivos `__init__` son agregados a los directorios que se requieren importar como módulos de Python.
+* Los archivos `__init__.py` son agregados a los directorios que se requieren importar como módulos de Python.
 * `Snake Case` para el nombre de archivos y funciones.
 * Corrección de _typos_.
 * Uso del idioma inglés para archivos, variables y funciones para mayor consistencia.
