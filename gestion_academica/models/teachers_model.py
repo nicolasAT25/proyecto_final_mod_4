@@ -1,5 +1,3 @@
-# Modulo 4/Clase 8/miniProyecto2/models/docentesModel.py
-
 from database import db_connect, close_db_conn, execute_query, commit_changes
 
 def create_teacher(numero_documento, nombre, apellido, email, telefono, especialidad):
@@ -40,15 +38,33 @@ def read_teacher_by_document(numero_documento):
     finally:
         close_db_conn(conn)
 
-def update_teacher(numero_documento, nombre, apellido, email, telefono, especialidad):
+def update_teacher(numero_documento):
     """Actualizar un docente existente."""
     try:
         conn = db_connect()
         if conn:
-            query = "UPDATE docentes SET nombre = %s, apellido = %s, email = %s, telefono = %s, especialidad = %s WHERE numero_documento = %s"
-            values = (nombre, apellido, email, telefono, especialidad, numero_documento)
-            execute_query(conn, query, values)
-            commit_changes(conn)
+            teacher = read_teacher_by_document(numero_documento)
+            if not teacher:
+                raise ValueError("Docente no encontrado.")
+            
+    except ValueError as e:
+        print(f"{e}")
+        
+    except Exception as e:
+        print(f"Error inesperado: {e}")
+        
+    else:
+        nombre = input("Ingrese el nuevo nombre (presione ENTER para no modificar): ") or teacher['nombre']
+        apellido = input("Ingrese el nuevo apellido (presione ENTER para no modificar): ") or teacher['apellido']
+        email = input("Ingrese el nuevo email (presione ENTER para no modificar): ") or teacher['email']
+        telefono = input("Ingrese el nuevo teléfono (presione ENTER para no modificar): ") or teacher['telefono']
+        especialidad = input("Ingrese la nueva especialidad (presione ENTER para no modificar): ") or teacher['especialidad']
+        
+        query = "UPDATE docentes SET nombre = %s, apellido = %s, email = %s, telefono = %s, especialidad = %s WHERE numero_documento = %s"
+        values = (nombre, apellido, email, telefono, especialidad, numero_documento)
+        execute_query(conn, query, values)
+        commit_changes(conn)
+        
     finally:
         close_db_conn(conn)
 

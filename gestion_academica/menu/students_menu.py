@@ -1,4 +1,4 @@
-from gestion_academica.controller import students_controller
+from controller import students_controller
 
 def students_menu():
     while True:
@@ -19,24 +19,18 @@ def students_menu():
             email = input("Ingrese el email: ")
             telefono = input("Ingrese el teléfono: ")
 
-            students_controller.crear_estudiante(numero_documento, nombre, apellido, fecha_nacimiento, email, telefono)
+            students_controller.create_student(numero_documento, nombre, apellido, fecha_nacimiento, email, telefono)
         elif opcion == "2":
-            students_controller.mostar_estudiantes() 
+            students_controller.show_students() 
         elif opcion == "3":
             id_estudiante = input("Ingrese el número de documento del estudiante: ")
-            students_controller.mostrar_estudiante(id_estudiante)
+            students_controller.show_student(id_estudiante)
         elif opcion == "4":
-            numero_documento = input("Ingrese el número de documento del estudiante a modificar: ")
-            nombre = input("Ingrese el nuevo nombre: ")
-            apellido = input("Ingrese el nuevo apellido: ")
-            fecha_nacimiento = input("Ingrese la nueva fecha de nacimiento (YYYY-MM-DD): ")
-            email = input("Ingrese el nuevo email: ")
-            telefono = input("Ingrese el nuevo teléfono: ")
-
-            students_controller.modificar_estudiante(numero_documento, nombre, apellido, fecha_nacimiento, email, telefono)
+            numero_documento = input("Ingrese el numero de documento del estudiante a modificar: ")
+            students_controller.update_student(numero_documento)
         elif opcion == "5":
             numero_documento = input("Ingrese el número de documento del estudiante a eliminar: ")
-            students_controller.eliminar_estudiante(numero_documento)
+            students_controller.delete_student(numero_documento)
         elif opcion == "6":
             print("Saliendo del menú de estudiantes.")
             break

@@ -11,10 +11,11 @@
 * `Snake Case` para el nombre de archivos y funciones.
 * Corrección de _typos_.
 * Uso del idioma inglés para archivos, variables y funciones para mayor consistencia.
+* Se modifican las actualizaciones en los modelos de tal manera que se verifica la existencia del registro y luego sí se solicitan los nuevos valores (si es que se quieren modificar).
 
 ### 1.2. Nuevas Funcionealidades
 
-* 
+* Se añaden el resto de operaciones CRUD a los modelos de `cursos` e `inscripciones` así como sus respectivas vistas, controladores y menús.
 
 
 ## 2. Tech Stack
@@ -33,3 +34,8 @@
 ```bash
 pip install "psycopg[binary]"
 pip install prettytable
+```
+
+## 4. Esquema de la base de datos
+
+Ejecutar el el script de SQL `academia.sql`, esto creará la DB `academia` y las tablas `estudiantes`, `docentes`, `cursos` e `inscripciones`.

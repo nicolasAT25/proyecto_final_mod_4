@@ -1,18 +1,18 @@
 from prettytable import PrettyTable
 
-def mostrar_estudiante(estudiante):
+def show_student(estudiante):
     """Mostrar los datos de un estudiante."""
-    tabla = PrettyTable()
-    tabla.field_names = ["Número de documento", "Nombre", "Apellido", "Fecha de nacimiento", "Email", "Teléfono"]
-    tabla.add_row([estudiante["numero_documento"], estudiante["nombre"], estudiante["apellido"], estudiante["fecha_nacimiento"], estudiante["email"], estudiante["telefono"]])
-    print(tabla)
+    table = PrettyTable()
+    table.field_names = ["Número de documento", "Nombre", "Apellido", "Fecha de nacimiento", "Email", "Teléfono"]
+    table.add_row([estudiante["numero_documento"], estudiante["nombre"], estudiante["apellido"], estudiante["fecha_nacimiento"], estudiante["email"], estudiante["telefono"]])
+    print(table)
 
-def mostrar_estudiantes(estudiantes):
+def show_students(estudiantes):
     """Mostrar la lista de estudiantes."""
-    tabla = PrettyTable()
-    tabla.field_names = ["Número de documento", "Nombre", "Apellido", "Fecha de nacimiento", "Email", "Teléfono"]
+    table = PrettyTable()
+    table.field_names = ["Número de documento", "Nombre", "Apellido", "Fecha de nacimiento", "Email", "Teléfono"]
     for estudiante in estudiantes:
-        tabla.add_row([estudiante["numero_documento"], estudiante["nombre"], estudiante["apellido"], estudiante["fecha_nacimiento"], estudiante["email"], estudiante["telefono"]])
-    print(tabla)
+        table.add_row([estudiante["numero_documento"], estudiante["nombre"], estudiante["apellido"], estudiante["fecha_nacimiento"], estudiante["email"], estudiante["telefono"]])
+    print(table)
 
 

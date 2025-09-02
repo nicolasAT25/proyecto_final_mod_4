@@ -76,7 +76,7 @@ def db_connect():
             print('Conexión a la base de datos exitosa!')
             break
         
-        except Exception as e:
+        except psycopg.errors.ConnectionException as e:
             print(f'Conexión a la base de datos fallida. Error: {e}')
             time.sleep(2)
             

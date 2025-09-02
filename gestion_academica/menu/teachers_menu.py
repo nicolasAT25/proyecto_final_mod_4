@@ -1,4 +1,4 @@
-from gestion_academica.controller import teachers_controller
+from controller import teachers_controller
 
 def teachers_menu():
     while True:
@@ -19,24 +19,18 @@ def teachers_menu():
             telefono = input("Ingrese el teléfono: ")
             especialidad = input("Ingrese la especialidad: ")
 
-            teachers_controller.crear_docente(numero_documento, nombre, apellido, email, telefono, especialidad)
+            teachers_controller.create_teacher(numero_documento, nombre, apellido, email, telefono, especialidad)
         elif opcion == "2":
-            teachers_controller.mostrar_docentes()
+            teachers_controller.show_teachers()
         elif opcion == "3":
             numero_documento = input("Ingrese el número de documento del docente: ")
-            teachers_controller.mostrar_docente(numero_documento)
+            teachers_controller.show_teacher(numero_documento)
         elif opcion == "4":
             numero_documento = input("Ingrese el número de documento del docente a actualizar: ")
-            nombre = input("Ingrese el nuevo nombre: ")
-            apellido = input("Ingrese el nuevo apellido: ")
-            email = input("Ingrese el nuevo email: ")
-            telefono = input("Ingrese el nuevo teléfono: ")
-            especialidad = input("Ingrese la nueva especialidad: ")
-
-            teachers_controller.modificar_docente(numero_documento, nombre, apellido, email, telefono, especialidad)
+            teachers_controller.update_teacher(numero_documento)
         elif opcion == "5":
             numero_documento = input("Ingrese el número de documento del docente a eliminar: ")
-            teachers_controller.eliminar_docente(numero_documento)
+            teachers_controller.delete_teacher(numero_documento)
         elif opcion == "6":
             print("Saliendo del menú de docentes.")
             break
