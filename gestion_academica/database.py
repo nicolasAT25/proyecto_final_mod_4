@@ -60,7 +60,6 @@ from config import settings
 # Conexión a la base de datos
 def db_connect():
     """Establece la conexión a la base de datos y devuelve el objeto de conexión."""
-    pass
     while True:
         try:
             conn = psycopg.connect(
